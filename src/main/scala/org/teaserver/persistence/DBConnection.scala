@@ -1,12 +1,28 @@
 package org.teaserver.persistence
 
-import java.util.Properties
-import java.sql.{Connection, DriverManager}
-import Class.forName
+import scala.util.parsing.json.JSONObject
 
 trait DBConnection {
-  def getConnection(props:Properties) : Connection = {
-    forName(props.getProperty("org.teaserver.classname"))
-    DriverManager.getConnection(props.getProperty("org.teaserver.url"), props.getProperty("org.teaserver.user"), props.getProperty("org.teaserver.pass") )
-  }
+  def insert(request: JSONObject)
+
+  def update(request: JSONObject)
+
+  def delete(request: JSONObject)
+
+  def get(request: JSONObject) : JSONObject
+
+  def query(request: JSONObject) : List[JSONObject]
+
+  def createTable(db: String, tabName: String, columns: List[JSONObject] = null)
+
+  def dropTable(db: String, tabName: String)
+
+  def createIndex(db: String, tabName: String, indexName: String, properties: JSONObject = null)
+
+  def dropIndex(db: String, tabName: String, indexName: String)
+
+  def dataBases = List[String]
+
+  def entities(database: String) = List[String]
+
 }
