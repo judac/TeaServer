@@ -9,5 +9,5 @@ trait PluginFactory {
 trait TeaPlugin {
   def name: String
 
-  def execute(parameters: Map[String, Array[String]]): Map[String, Any]
+  def execute(parameters: Map[String, Any]): Map[String, Any]
 }
