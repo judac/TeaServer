@@ -11,7 +11,9 @@ import scala.collection.JavaConverters._
 import org.teaserver.exception.InterceptorException
 
 class RequestHandler(interceptors: List[TeaInterceptor], plugins: Map[String, TeaPlugin]) extends AbstractHandler {
+
   def handle(target: String, baseRequest: Request, request: HttpServletRequest, response: HttpServletResponse) {
+
     response.setContentType("text/html;charset=utf-8")
     response.setStatus(HttpServletResponse.SC_OK)
     baseRequest.setHandled(true)
